@@ -3,6 +3,8 @@ import Online from "../online/Online"
 import {Users} from "../../dummyData"
 
 function Rightbar({profile}) {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER
+
   const HomeRightbar = () => {
     return (
       <>
@@ -45,27 +47,27 @@ function Rightbar({profile}) {
         <h4 className="rightbarTitle">Arkadaşlar</h4>
         <div className="rightbarFollowings">
           <div className="rightbarFollowing">
-            <img src="/assets/person/1.jpeg" className="rightbarFollowingImg" alt="" />
+            <img src={`${PF}person/1.jpeg`} className="rightbarFollowingImg" alt="" />
             <span className="rightbarFollowingName">begüm yetişkin</span>
           </div>
           <div className="rightbarFollowing">
-            <img src="/assets/person/2.jpeg" className="rightbarFollowingImg" alt="" />
+            <img src={`${PF}person/2.jpeg`} className="rightbarFollowingImg" alt="" />
             <span className="rightbarFollowingName">begüm yetişkin</span>
           </div>
           <div className="rightbarFollowing">
-            <img src="/assets/person/3.jpeg" className="rightbarFollowingImg" alt="" />
+            <img src={`${PF}person/3.jpeg`} className="rightbarFollowingImg" alt="" />
             <span className="rightbarFollowingName">begüm yetişkin</span>
           </div>
           <div className="rightbarFollowing">
-            <img src="/assets/person/4.jpeg" className="rightbarFollowingImg" alt="" />
+            <img src={`${PF}person/4.jpeg`} className="rightbarFollowingImg" alt="" />
             <span className="rightbarFollowingName">begüm yetişkin</span>
           </div>
           <div className="rightbarFollowing">
-            <img src="/assets/person/5.jpeg" className="rightbarFollowingImg" alt="" />
+            <img src={`${PF}person/5.jpeg`} className="rightbarFollowingImg" alt="" />
             <span className="rightbarFollowingName">begüm yetişkin</span>
           </div>
           <div className="rightbarFollowing">
-            <img src="/assets/person/6.jpeg" className="rightbarFollowingImg" alt="" />
+            <img src={`${PF}person/6.jpeg`} className="rightbarFollowingImg" alt="" />
             <span className="rightbarFollowingName">begüm yetişkin</span>
           </div>
           <div className="rightbarFollowing">
