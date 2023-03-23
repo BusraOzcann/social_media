@@ -7,26 +7,26 @@ import { Posts } from "../../dummyData"
 import Share from "../share/Share"
 import Post from "../post/Post"
 
-function Feed() {
-  const [post, setPosts] = useState([])
+function Feed({username}) {
+  const [posts, setPosts] = useState([])
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("http://localhost:8800/api/posts/timeline/6419eb86dea3f785e79b78b5")
-      console.log({res})
+      const res = username ? await axios.get("http://localhost:8800/api/posts/profile/" + username) : await axios.get("http://localhost:8800/api/posts/timeline/6419eb86dea3f785e79b78b5")
+      setPosts(res.data);
     }
 
     fetchPosts()
-  }, [])
+  }, [username])
 
   return (
     <div className="feed">
       <div className="feedWrapper">
         <Share/>
 
-        {/* {Posts.map(p => (
-          <Post key={p.id} post={p}/>
-        ))} */}
+        {posts.map(p => (
+          <Post key={p._id} post={p}/>
+        ))}
 
       </div>
     </div>

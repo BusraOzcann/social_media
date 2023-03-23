@@ -10,6 +10,7 @@ const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const router = express.Router();
 const path = require("path");
+const cors = require("cors")
 
 dotenv.config();
 
@@ -48,6 +49,9 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
+
+let corsOptions = {origin : 'http://localhost:3000', credentials:true, optionSuccessStatus : 200}
+app.use(cors());
 
 app.listen(8800, () => {
   console.log("Backend server is running!");

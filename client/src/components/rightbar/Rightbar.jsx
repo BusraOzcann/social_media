@@ -2,7 +2,7 @@ import "./rightbar.css"
 import Online from "../online/Online"
 import {Users} from "../../dummyData"
 
-function Rightbar({profile}) {
+function Rightbar({user}) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
 
   const HomeRightbar = () => {
@@ -14,7 +14,7 @@ function Rightbar({profile}) {
             Bugün <b>Begüm Yetişkin</b> ve <b>2 diğer kişinin</b> doğum günü.
           </span>
         </div>
-        <img className="rightbarAd" src="/assets/ad.png" alt="" />
+        <img className="rightbarAd" src="/assets/ad.png" alt="" /> 
         <h4 className="rightbarTitle">Çevrimiçi Arkadaşlar</h4>
         <ul className="rightbarFriendList">
           {Users.map(u => (
@@ -32,15 +32,15 @@ function Rightbar({profile}) {
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Şehir :</span>
-            <span className="rightbarInfoValue">Sivas</span>
+            <span className="rightbarInfoValue">{user.city}</span>
           </div>
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Doğum Yeri :</span>
-            <span className="rightbarInfoValue">Bolu</span>
+            <span className="rightbarInfoValue">{user.from}</span>
           </div>
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Medeni Durumu :</span>
-            <span className="rightbarInfoValue">Bekar</span>
+            <span className="rightbarInfoValue">{user.relationship === 1 ? 'Single' : user.relationship === 2 ? "Married" : "Empty"}</span>
           </div>
         </div>
 
@@ -82,7 +82,7 @@ function Rightbar({profile}) {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {profile ? <ProfileRightbar/> : <HomeRightbar/>}
+        {user ? <ProfileRightbar/> : <HomeRightbar/>}
       </div>
     </div>
   )
