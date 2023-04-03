@@ -14,7 +14,6 @@ const cors = require('cors');
 
 dotenv.config();
 
-
 mongoose.connect(
   process.env.MONGO_URL,
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -28,40 +27,35 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+
+
 const corsOpts = {
   origin: '*',
   credentials: true,
-  methods: [
-    'GET',
-    'POST',
-  ],
   allowedHeaders: [
-    'Content-Type',
-  ],
+    'Content-Type'
+  ]
 };
 
 app.use(cors(corsOpts));
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
 
+
+// multer = resim dosyası yüklemek için kullanılan js frameworkü
+let filename = ""
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/images");
+  destination: function (req, file, cb) {
+    cb(null, 'public/images/')
   },
-  filename: (req, file, cb) => {
-    cb(null, req.body.name);
-  },
+  filename: function (req, file, cb) {
+    filename = Date.now() + file.originalname
+    cb(null, filename);
+  }
 });
 
 const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
   try {
-    return res.status(200).json("File uploded successfully");
+    return res.status(200).json({name: filename});
   } catch (error) {
     console.error(error);
   }
